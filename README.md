@@ -1,84 +1,40 @@
-# InfEnchant
+# ⚡ InfEnchant
 
-A modern Minecraft Paper plugin built for **Paper 1.21.11** running on **Java 21**.
+Tired of vanilla's strict enchantment caps? Frustrated when EssentialsX blocks you from putting **Sharpness 225** on a stick? 
 
-InfEnchant removes the vanilla and EssentialsX enchantment caps, allowing operators to enchant any held item up to **level 225** (and byte ceiling **255**) using both an interactive **Switcher Dialog GUI** and direct Brigadier commands.
-
----
-
-## Features
-
-- **Operator-Only Access**: Strictly restricted to OP players or users with `infenchant.admin`.
-- **Bypasses Vanilla & EssentialsX Limits**: Enchants items up to level 225/255 safely using Paper's unsafe enchantment pipeline.
-- **Interactive Switcher Dialog GUI**:
-  - **Category Switcher**: Cycle across All, Weapons & Combat, Armor & Defense, Tools & Mining, Bows & Crossbows, Trident & Mace, and Utility/Curses.
-  - **Level Adjustment**: Preset buttons for Level 1, 50, 100, **225** (Vanilla Max), and **255** (Absolute Max), plus `+1`, `-1`, `+10`, `-10` adjusters.
-  - **Real-Time Held Item Preview**: View the item in your hand and its active enchantment levels dynamically.
-  - **Click to Apply / Remove**: Left-click to apply at the selected level; right-click to strip the enchantment.
-  - **Quick Actions**: Apply all enchantments or clear all enchantments with one click.
-- **Brigadier Command & Tab Completion**: Autocompletes all registered 1.21.11 enchantments, aliases, and level suggestions.
-- **Enchanted Books & Any Item**: Works on weapons, armor, tools, blocks, items, and `ENCHANTED_BOOK` storage meta.
-- **Folia & Paper Ready**: Built on Paper 1.21.11 lifecycle events and `paper-plugin.yml`.
+**InfEnchant** is a lightweight, modern Paper plugin designed for server admins and operators who just want full control without the headache. It removes the arbitrary vanilla and Essentials limits, letting you safely enchant **any item** up to **level 225** (and the absolute byte ceiling of **255**) using either a clean visual GUI or fast tab-completing commands.
 
 ---
 
-## Commands & Usage
+### 📋 Commands & Permissions
 
-*All commands require operator status or the `infenchant.admin` permission.*
+> **Note:** InfEnchant is operator-only by default (`default: op`). Regular players cannot use it unless explicitly granted permission.
 
 | Command | Description |
 | :--- | :--- |
-| `/infenchant` | Opens the interactive Switcher Dialog GUI (default target level: 225). |
-| `/infenchant <level>` | Opens the Switcher Dialog GUI pre-set to the given level (e.g. `225` or `255`). |
-| `/infenchant <enchantment>` | Enchants the held item with the specified enchantment at level 225. |
-| `/infenchant <enchantment> <level>` | Enchants the held item with the specified enchantment at `level` (1–255). |
-| `/infenchant all [level]` | Enchants the held item with **all** registered enchantments at `level` (default: 225). |
-| `/infenchant clear` | Clears all enchantments from the held item. |
-| `/infenchant gui [level]` | Explicit alias to open the Switcher Dialog GUI. |
+| `/infenchant` | Opens the Switcher GUI with level 225 preset |
+| `/infenchant <level>` | Opens the GUI preset to that specific level (e.g. `/infenchant 255`) |
+| `/infenchant <enchantment> [level]` | Directly enchants your held item (default: 225) |
+| `/infenchant all [level]` | Applies all registered enchantments to your item |
+| `/infenchant clear` | Clears all enchantments from your held item |
 
-**Command Aliases**: `/ie`, `/infiniteenchant`.
+**Short Aliases:** `/ie`, `/infiniteenchant`
 
----
-
-## Project Structure
-```
-infenchant/
-├── build.gradle.kts           # Gradle configuration with Paper repo & dependencies
-├── settings.gradle.kts        # Root project settings
-├── src/
-│   ├── main/
-│   │   ├── java/com/infenchant/
-│   │   │   ├── InfEnchant.java               # Main plugin entry point & registration
-│   │   │   ├── command/
-│   │   │   │   └── InfEnchantCommand.java   # Brigadier command implementation
-│   │   │   ├── gui/
-│   │   │   │   ├── EnchantmentCategory.java  # Category tabs & filtering
-│   │   │   │   ├── EnchantmentGui.java       # 54-slot dialog GUI renderer
-│   │   │   │   ├── EnchantmentGuiHolder.java # Custom inventory holder
-│   │   │   │   └── EnchantmentGuiListener.java # Interactive click & drag events
-│   │   │   └── util/
-│   │   │       └── EnchantmentUtil.java      # Unsafe enchantment & storage meta handling
-│   │   └── resources/
-│   │       └── paper-plugin.yml              # Modern Paper plugin manifest & permissions
-│   └── test/
-│       └── java/com/infenchant/
-│           └── EnchantmentUtilTest.java      # Unit tests
-└── .gitignore
-```
+#### Permission Node
+- `infenchant.admin` — Grants access to `/infenchant` and the GUI (defaults to server operators).
 
 ---
 
-## Common Tasks
+### 📦 Installation
 
-### 1. Build the Plugin JAR
-To compile the code and build the plugin JAR into `build/libs/`:
-```bash
-gradle build
-```
+1. Download the latest `InfEnchant-x.x.x.jar`.
+2. Drop it into your server's `plugins/` folder.
+3. Restart your server (or load it using your favorite plugin manager).
+4. Hold any item in your main hand and type `/infenchant`!
 
-### 2. Run Local Paper 1.21.11 Test Server
-To launch an automatic local Paper 1.21.11 test server with your plugin pre-loaded:
-```bash
-gradle runServer
-```
-*(On first run, this downloads Paper 1.21.11 and automatically accepts the Mojang EULA).*
+---
+
+### 🛠️ Compatibility
+
+- **Server Software:** Paper 1.21.11
+- **Java Requirement:** Java 21 or higher.
