@@ -1,0 +1,12 @@
+name: "${name}"
+version: "${version}"
+main: com.infenchant.InfEnchant
+api-version: "${apiVersion}"
+description: "${description}"
+author: crafter
+folia-supported: true
+
+permissions:
+  infenchant.admin:
+    description: Allows full operator access to the /infenchant command and GUI dialog
+    default: op
